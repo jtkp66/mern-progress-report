@@ -1,19 +1,32 @@
 const express = require('express');
-
 const mongoose = require('mongoose');
+const path = require('path');
+const config = require('config')
 
 const app = express();
 
-// const db = require()
+app.use(express.json());
+
+const db = config.get('mongoURI');
+
+mongoose.connect(db, { 
+    useNewUrlParser: true,
+    useCreateIndex: true
+})
+.then(() => console.log('MongoDb Connected...'))
+.catch(err => console.log(err));
 
 // app.get('/', (req, res) => {
 //     res.send({ hi: 'there'});
 // });
 
+app.use(express.urlencoded({ extended: false }));
+
 // Routes
 app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/admin', require('./routes/admin'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/admin', require('./routes/api/admin'));
 
 const PORT = process.env.PORT || 5000;
 
