@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AdminSchema = new mongoose.Schema({
+const SurveySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -14,16 +14,17 @@ const AdminSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  adminpw: {
+  Surveypw: {
     type: String,
     required: true
   },
+  _user: { type: Schema.Types.ObjectId, ref: "User" },
   date: {
     type: Date,
     default: Date.now
   }
 });
 
-const Admin = mongoose.model("Admin", AdminSchema);
+const Survey = mongoose.model("Survey", SurveySchema);
 
-module.exports = Admin;
+module.exports = Survey;

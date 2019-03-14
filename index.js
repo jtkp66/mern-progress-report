@@ -1,20 +1,21 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const config = require('config')
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
+const config = require("config");
 
 const app = express();
 
 app.use(express.json());
 
-const db = config.get('mongoURI');
+const db = config.get("mongoURI");
 
-mongoose.connect(db, { 
+mongoose
+  .connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true
-})
-.then(() => console.log('MongoDb Connected...'))
-.catch(err => console.log(err));
+  })
+  .then(() => console.log("MongoDb Connected..."))
+  .catch(err => console.log(err));
 
 // app.get('/', (req, res) => {
 //     res.send({ hi: 'there'});
@@ -23,10 +24,10 @@ mongoose.connect(db, {
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use('/', require('./routes/index'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/admin', require('./routes/api/admin'));
+app.use("/", require("./routes/index"));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/admin", require("./routes/api/admin"));
 
 const PORT = process.env.PORT || 5000;
 
