@@ -18,6 +18,10 @@ const SurveySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  engname: {
+    type: String,
+    required: true
+  },
   q1: {
     type: String,
     required: true

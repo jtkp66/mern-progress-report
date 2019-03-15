@@ -13,7 +13,6 @@ import SurveyDelete from "./surveys/SurveyDelete";
 import SurveyList from "./surveys/SurveyList";
 import SurveyShow from "./surveys/SurveyShow";
 import history from "../history";
-const Dashboard = () => <div>hi</div>;
 
 class App extends Component {
   render() {
@@ -24,11 +23,10 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact={true} path="/" component={Landing} />
-              <Route exact path="/surveys" component={Dashboard} />
+              <Route exact path="/surveys" component={SurveyList} />
               <Route path="/coordinators/login" component={CoordinatorLogin} />
               <Route path="/admin/validate" component={AdminValidate} />
               <Route path="/admin/login" component={AdminLogin} />
-              <Route path="/" exact component={SurveyList} />
               <Route path="/surveys/new" exact component={SurveyCreate} />
               <Route path="/surveys/edit/:id" exact component={SurveyEdit} />
               <Route

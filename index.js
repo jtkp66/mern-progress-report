@@ -17,10 +17,6 @@ mongoose
   .then(() => console.log("MongoDb Connected..."))
   .catch(err => console.log(err));
 
-// app.get('/', (req, res) => {
-//     res.send({ hi: 'there'});
-// });
-
 app.use(express.urlencoded({ extended: false }));
 
 // Routes

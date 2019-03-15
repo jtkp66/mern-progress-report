@@ -10,7 +10,7 @@ import {
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_SURVEYS:
-      return { ...state, ..._.mapKeys(action.payload, "id") };
+      return { ...state, ..._.mapKeys(action.payload, "_id") };
     case FETCH_SURVEY:
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_SURVEY:

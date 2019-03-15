@@ -218,7 +218,7 @@ class SurveyForm extends Component {
         </div>
         <h3 className="text-danger">STUDENT PROGRESS</h3>
         <Field
-          name="engName"
+          name="engname"
           component={this.renderInput}
           label="STUDENT'S ENGLISH NAME"
         />
@@ -290,7 +290,7 @@ class SurveyForm extends Component {
             Coordinator's comments re: Student's progress this month (Required)
           </label>
           <div>
-            <Field name="notes" component={this.renderCoordinatorComments} />
+            <Field name="q8" component={this.renderCoordinatorComments} />
           </div>
         </div>
         <button className="ui inverted red button mt-2 mb-4">Save</button>

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../apis/surveys";
 import history from "../history";
 import {
   CREATE_SURVEY,
@@ -10,33 +10,33 @@ import {
 
 export const createSurvey = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await axios.post("/surveys", { ...formValues, userId });
+  const response = await axios.post("/api/surveys", { ...formValues, userId });
 
   dispatch({ type: CREATE_SURVEY, payload: response.data });
   history.push("/");
 };
 
 export const fetchSurveys = () => async dispatch => {
-  const response = await axios.get("/surveys");
+  const response = await axios.get("/api/surveys");
 
   dispatch({ type: FETCH_SURVEYS, payload: response.data });
 };
 
 export const fetchSurvey = id => async dispatch => {
-  const response = await axios.get(`/surveys/${id}`);
+  const response = await axios.get(`/api/surveys/${id}`);
 
   dispatch({ type: FETCH_SURVEY, payload: response.data });
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await axios.patch(`/surveys/${id}`, formValues);
+  const response = await axios.patch(`/api/surveys/${id}`, formValues);
 
   dispatch({ type: EDIT_SURVEY, payload: response.data });
   history.push("/");
 };
 
 export const deleteStream = id => async dispatch => {
-  await axios.delete(`/surveys/${id}`);
+  await axios.delete(`/api/surveys/${id}`);
 
   dispatch({ type: DELETE_SURVEY, payload: id });
   history.push("/");
