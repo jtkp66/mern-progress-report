@@ -1,26 +1,46 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
-import Landing from './Landing';
-import CoordinatorLogin from './coordinators/CoordinatorLogin';
-import AdminValidate from './admin/AdminValidate';
-import AdminLogin from './admin/AdminLogin';
+import Header from "./Header";
+import Landing from "./Landing";
+import CoordinatorLogin from "./coordinators/CoordinatorLogin";
+import AdminValidate from "./admin/AdminValidate";
+import AdminLogin from "./admin/AdminLogin";
+
+import SurveyCreate from "./surveys/SurveyCreate";
+import SurveyEdit from "./surveys/SurveyEdit";
+import SurveyDelete from "./surveys/SurveyDelete";
+import SurveyList from "./surveys/SurveyList";
+import SurveyShow from "./surveys/SurveyShow";
+import history from "../history";
 const Dashboard = () => <div>hi</div>;
-
-
 
 class App extends Component {
   render() {
     return (
-        <BrowserRouter>
-          <div className="container">
-            <Route exact={true} path="/" component={Landing} />
-            <Route exact path="/surveys" component={Dashboard} />
-            <Route path="/coordinators/login" component={CoordinatorLogin} />
-            <Route path="/admin/validate" component={AdminValidate} />
-            <Route path="/admin/login" component={AdminLogin} />
+      <div className="container">
+        <Router history={history}>
+          <div>
+            <Header />
+            <Switch>
+              <Route exact={true} path="/" component={Landing} />
+              <Route exact path="/surveys" component={Dashboard} />
+              <Route path="/coordinators/login" component={CoordinatorLogin} />
+              <Route path="/admin/validate" component={AdminValidate} />
+              <Route path="/admin/login" component={AdminLogin} />
+              <Route path="/" exact component={SurveyList} />
+              <Route path="/surveys/new" exact component={SurveyCreate} />
+              <Route path="/surveys/edit/:id" exact component={SurveyEdit} />
+              <Route
+                path="/surveys/delete/:id"
+                exact
+                component={SurveyDelete}
+              />
+              <Route path="/surveys/:id" exact component={SurveyShow} />
+            </Switch>
           </div>
-        </BrowserRouter>
+        </Router>
+      </div>
     );
   }
 }
