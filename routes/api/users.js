@@ -7,15 +7,21 @@ const jwt = require("jsonwebtoken");
 // User Model
 const User = require("../../models/User");
 
+router.get("/", (req, res) => {
+  User.find()
+    .sort({ date: -1 })
+    .then(users => res.json(users));
+});
+
 // @route POST api/users
 // @descr Register new user
 // @access Public
 
 router.post("/", (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   // Simple Validation
-  if (!name || !email || !password) {
+  if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({ msg: "Please enter all fields " });
   }
 
@@ -24,7 +30,8 @@ router.post("/", (req, res) => {
     if (user) return res.status(400).json({ msg: "User already exists" });
 
     const newUser = new User({
-      name,
+      firstName,
+      lastName,
       email,
       password
     });
@@ -45,7 +52,8 @@ router.post("/", (req, res) => {
                 token,
                 user: {
                   id: user.id,
-                  name: user.name,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
                   email: user.email
                 }
               });

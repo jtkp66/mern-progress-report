@@ -1,4 +1,4 @@
-import axios from "../apis/surveys";
+import axios from "axios";
 import history from "../history";
 import {
   CREATE_SURVEY,

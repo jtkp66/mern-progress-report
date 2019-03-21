@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 
-import Header from "./Header";
+import AppNavBar from "./AppNavBar";
 import Landing from "./Landing";
 import CoordinatorLogin from "./coordinators/CoordinatorLogin";
 import AdminValidate from "./admin/AdminValidate";
 import AdminLogin from "./admin/AdminLogin";
 
 import SurveyCreate from "./surveys/SurveyCreate";
+import SurveyCreate2 from "./surveys/SurveyCreate2";
+import SurveyCreate3 from "./surveys/SurveyCreate3";
 import SurveyEdit from "./surveys/SurveyEdit";
 import SurveyDelete from "./surveys/SurveyDelete";
 import SurveyList from "./surveys/SurveyList";
@@ -20,7 +22,7 @@ class App extends Component {
       <div className="container">
         <Router history={history}>
           <div>
-            <Header />
+            <AppNavBar />
             <Switch>
               <Route exact={true} path="/" component={Landing} />
               <Route exact path="/surveys" component={SurveyList} />
@@ -28,6 +30,12 @@ class App extends Component {
               <Route path="/admin/validate" component={AdminValidate} />
               <Route path="/admin/login" component={AdminLogin} />
               <Route path="/surveys/new" exact component={SurveyCreate} />
+              <Route path="/surveys/hostmpr" exact component={SurveyCreate2} />
+              <Route
+                path="/surveys/coordinatormpr"
+                exact
+                component={SurveyCreate3}
+              />
               <Route path="/surveys/edit/:id" exact component={SurveyEdit} />
               <Route
                 path="/surveys/delete/:id"

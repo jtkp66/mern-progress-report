@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
-class SurveyForm extends Component {
+class SurveyForm3 extends Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -327,6 +327,6 @@ const validate = formValues => {
 };
 
 export default reduxForm({
-  form: "surveyForm",
+  form: "surveyForm3",
   validate: validate
-})(SurveyForm);
+})(SurveyForm3);

@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createSurvey } from "../../actions";
-import SurveyForm from "./SurveyForm";
+import SurveyForm2 from "./SurveyForm2";
 
-import {
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  NavLink,
-  Nav,
-  NavItem
-} from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
-class SurveyCreate extends Component {
+class SurveyCreate2 extends Component {
   state = {
     isOpen: false
   };
@@ -76,7 +69,7 @@ class SurveyCreate extends Component {
           </Pagination>
         </div>
         <h3 className="text-danger">MONTHLY PROGRESS REPORT</h3>
-        <SurveyForm onSubmit={this.onSubmit} />
+        <SurveyForm2 onSubmit={this.onSubmit} />
       </div>
     );
   }
@@ -85,4 +78,4 @@ class SurveyCreate extends Component {
 export default connect(
   null,
   { createSurvey }
-)(SurveyCreate);
+)(SurveyCreate2);

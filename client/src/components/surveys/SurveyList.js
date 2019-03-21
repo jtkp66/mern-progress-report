@@ -28,12 +28,15 @@ class SurveyList extends Component {
     return this.props.surveys.map(survey => {
       return (
         <div className="item" key={survey._id}>
-          <i className="large middle aligned icon film" />
+          <i className="large middle aligned icon file" />
           <div className="content">
             <Link to={`/surveys/${survey.coordinator}`} className="header">
               {survey.coordinator}
             </Link>
             <div className="description">{survey.host}</div>
+            <p className="right">
+              Sent On: {new Date(survey.date).toLocaleDateString()}
+            </p>
           </div>
         </div>
       );
@@ -43,8 +46,8 @@ class SurveyList extends Component {
   render() {
     return (
       <div>
-        <h2>My Surveyss</h2>
-        <div className="ui celled list">{this.renderSurveys()}</div>
+        <h2>Surveys</h2>
+        <div className="ui celled list">{this.renderList()}</div>
       </div>
     );
   }
