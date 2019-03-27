@@ -226,15 +226,15 @@ class SurveyForm2 extends Component {
             component={this.renderSplit}
           />
         </div>
-        <h3 className="text-danger">STUDENT PROGRESS</h3>
+        <h3 className="text-danger">HOST FAMILY PROGRESS</h3>
         <Field
           name="engname"
           component={this.renderInput}
-          label="STUDENT'S ENGLISH NAME"
+          label="HOST FAMILY'S LAST NAME"
         />
         <Field
           name="q1"
-          label="1) How are you getting along with your host family?"
+          label="1) How is your relationship with your student?"
           component={this.renderRadio}
         />
         <Field name="q1a" label="Comments:" component={this.renderTextarea} />

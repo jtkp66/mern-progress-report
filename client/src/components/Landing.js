@@ -9,10 +9,7 @@ const Landing = () => {
           <div className="card card-body text-danger text-center">
             <img className="mt-4" src={logo} alt="Logo" />
             <p className="text-dark">Please Select A Role</p>
-            <a
-              href="/admin/validate"
-              className="btn btn-primary btn-block mb-2"
-            >
+            <a href="/admin/validate" className="btn btn-info btn-block mb-2">
               Admin
             </a>
             <a href="/coordinators/login" className="btn btn-danger btn-block">

@@ -18,37 +18,33 @@ class SurveyForm extends Component {
       <div className={className}>
         <div className="field">
           <label>{label}</label>
-          <input
-            type="text"
-            name="shipping[first-name]"
-            placeholder={placeholder}
-          />
+          <input type="text" placeholder={placeholder} />
         </div>
       </div>
     );
   };
 
-  renderHead = ({ input, label, meta }) => {
+  renderHead = ({ input, label, meta, placeholder }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     console.log(meta);
     return (
       <div className={className}>
         <div className="two fields">
           <div className="field">
-            <label>Date(s) of Contact (Month/Day/Year):</label>
+            <label>{label}</label>
             <input
               type="text"
               name="shipping[first-name]"
-              placeholder="First Name"
+              placeholder={placeholder}
             />
           </div>
 
           <div className="field">
-            <label>Coordinator</label>
+            <label>{label}</label>
             <input
               type="text"
               name="shipping[last-name]"
-              placeholder="Last Name"
+              placeholder={placeholder}
             />
           </div>
         </div>
@@ -56,7 +52,17 @@ class SurveyForm extends Component {
     );
   };
 
-  renderInput = ({ input, label, meta }) => {
+  renderTextarea = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <textarea rows="2" {...input} />
+      </div>
+    );
+  };
+
+  renderInput = ({ input, label, meta, placeholder }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     console.log(meta);
     return (
@@ -72,37 +78,45 @@ class SurveyForm extends Component {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
-        <div className="ui form">
-          <div className="inline fields">
-            <label>{label}</label>
-            <div className="field">
-              <div className="ui radio checkbox">
-                <input
-                  type="radio"
-                  name="frequency"
-                  checked="checked"
-                  onChange={() => console.log("hey")}
-                />
-                <label>Excellent</label>
-              </div>
+        <div className="inline fields">
+          <label>{label}</label>
+          <div className="field">
+            <div className="ui radio checkbox">
+              <input type="radio" name="q1" {...input} value="Excellent" />
+              <label>Excellent</label>
             </div>
-            <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="frequency" />
-                <label>Very Good</label>
-              </div>
+          </div>
+          <div className="field">
+            <div className="ui radio checkbox">
+              <input
+                type="radio"
+                name="frequency"
+                {...input}
+                value="Very Good"
+              />
+              <label>Very Good</label>
             </div>
-            <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="frequency" />
-                <label>Satisfactory</label>
-              </div>
+          </div>
+          <div className="field">
+            <div className="ui radio checkbox">
+              <input
+                type="radio"
+                name="frequency"
+                {...input}
+                value="Satisfactory"
+              />
+              <label>Satisfactory</label>
             </div>
-            <div className="field">
-              <div className="ui radio checkbox">
-                <input type="radio" name="frequency" />
-                <label>Needs Improvement</label>
-              </div>
+          </div>
+          <div className="field">
+            <div className="ui radio checkbox">
+              <input
+                type="radio"
+                name="frequency"
+                {...input}
+                value="Needs Improvement"
+              />
+              <label>Needs Improvement</label>
             </div>
           </div>
         </div>
@@ -145,33 +159,18 @@ class SurveyForm extends Component {
             <label>{label}</label>
             <div className="field">
               <div className="ui radio checkbox">
-                <input
-                  type="radio"
-                  name="frequency"
-                  checked="checked"
-                  onChange={() => console.log("hey")}
-                />
+                <input type="radio" name="frequency" {...input} value="Yes" />
                 <label>Yes</label>
               </div>
             </div>
             <div className="field">
               <div className="ui radio checkbox">
-                <input type="radio" name="frequency" />
+                <input type="radio" name="frequency" {...input} value="No" />
                 <label>No</label>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  };
-
-  renderTextarea = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div className={className}>
-        <label>{label}</label>
-        <textarea rows="2" />
       </div>
     );
   };
@@ -203,13 +202,13 @@ class SurveyForm extends Component {
             name="date"
             label="Date(s) of Contact (Month/Day/Year):"
             placeholder="(Month/Day/Year)"
-            component={this.renderSplit}
+            component={this.renderInput}
           />
           <Field
             name="coordinator"
             label="Coordinator Name:"
             placeholder="Coordinator Name"
-            component={this.renderSplit}
+            component={this.renderInput}
           />
         </div>
         <div className="two fields">
@@ -217,13 +216,13 @@ class SurveyForm extends Component {
             name="student"
             label="Student's Surname, Given Name:"
             placeholder="Student's Surname, Given Name:"
-            component={this.renderSplit}
+            component={this.renderInput}
           />
           <Field
             name="host"
             label="Host Family Name:"
             placeholder="Host Family Name:"
-            component={this.renderSplit}
+            component={this.renderInput}
           />
         </div>
         <h3 className="text-danger">STUDENT PROGRESS</h3>
@@ -300,33 +299,32 @@ class SurveyForm extends Component {
             Coordinator's comments re: Student's progress this month (Required)
           </label>
           <div>
-            <Field name="q8" component={this.renderCoordinatorComments} />
+            <Field name="q8" component={this.renderTextarea} />
           </div>
         </div>
-        <button className="ui inverted red button mt-2 mb-4">Save</button>
         <button className="ui inverted primary button mt-2 mb-4">Submit</button>
       </form>
     );
   }
 }
 
-const validate = formValues => {
-  const errors = {};
-  if (!formValues.title) {
-    errors.title = "You must enter a title";
-  }
+// const validate = formValues => {
+//   const errors = {};
+//   if (!formValues.date) {
+//     errors.date = "You must enter a date";
+//   }
 
-  if (!formValues.description) {
-    errors.description = "You must enter a description";
-  }
-  if (!formValues.notes) {
-    errors.notes = "You must enter a notes";
-  }
+//   if (!formValues.description) {
+//     errors.description = "You must enter a description";
+//   }
+//   if (!formValues.notes) {
+//     errors.notes = "You must enter a notes";
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
 export default reduxForm({
-  form: "surveyForm",
-  validate: validate
+  form: "surveyForm"
+  // validate: validate
 })(SurveyForm);

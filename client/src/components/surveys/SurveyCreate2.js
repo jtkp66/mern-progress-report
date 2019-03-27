@@ -63,7 +63,7 @@ class SurveyCreate2 extends Component {
                 className="text-info"
                 href="/surveys/coordinatormpr"
               >
-                Coordinator MPR
+                School MPR
               </PaginationLink>
             </PaginationItem>
           </Pagination>

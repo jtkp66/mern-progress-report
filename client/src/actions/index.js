@@ -9,8 +9,8 @@ import {
 } from "./types";
 
 export const createSurvey = formValues => async (dispatch, getState) => {
-  const { userId } = getState().auth;
-  const response = await axios.post("/api/surveys", { ...formValues, userId });
+  const { user } = getState().auth;
+  const response = await axios.post("/api/surveys", { ...formValues, user });
 
   dispatch({ type: CREATE_SURVEY, payload: response.data });
   history.push("/");
@@ -28,14 +28,14 @@ export const fetchSurvey = id => async dispatch => {
   dispatch({ type: FETCH_SURVEY, payload: response.data });
 };
 
-export const editStream = (id, formValues) => async dispatch => {
+export const editSurvey = (id, formValues) => async dispatch => {
   const response = await axios.patch(`/api/surveys/${id}`, formValues);
 
   dispatch({ type: EDIT_SURVEY, payload: response.data });
   history.push("/");
 };
 
-export const deleteStream = id => async dispatch => {
+export const deleteSurvey = id => async dispatch => {
   await axios.delete(`/api/surveys/${id}`);
 
   dispatch({ type: DELETE_SURVEY, payload: id });

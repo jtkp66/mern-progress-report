@@ -35,7 +35,7 @@ class SurveyForm3 extends Component {
       <div className={className}>
         <div className="two fields">
           <div className="field">
-            <label>Date(s) of Contact (Month/Day/Year):</label>
+            <label>SCHOOL'S NAME:</label>
             <input
               type="text"
               name="shipping[first-name]"
@@ -44,7 +44,7 @@ class SurveyForm3 extends Component {
           </div>
 
           <div className="field">
-            <label>Coordinator</label>
+            <label>STUDENT'S NAME</label>
             <input
               type="text"
               name="shipping[last-name]"
@@ -198,39 +198,11 @@ class SurveyForm3 extends Component {
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
       >
-        <div className="two fields">
-          <Field
-            name="date"
-            label="Date(s) of Contact (Month/Day/Year):"
-            placeholder="(Month/Day/Year)"
-            component={this.renderSplit}
-          />
-          <Field
-            name="coordinator"
-            label="Coordinator Name:"
-            placeholder="Coordinator Name"
-            component={this.renderSplit}
-          />
-        </div>
-        <div className="two fields">
-          <Field
-            name="student"
-            label="Student's Surname, Given Name:"
-            placeholder="Student's Surname, Given Name:"
-            component={this.renderSplit}
-          />
-          <Field
-            name="host"
-            label="Host Family Name:"
-            placeholder="Host Family Name:"
-            component={this.renderSplit}
-          />
-        </div>
-        <h3 className="text-danger">STUDENT PROGRESS</h3>
+        <h3 className="text-danger">SCHOOL PROGRESS</h3>
         <Field
           name="engname"
-          component={this.renderInput}
-          label="STUDENT'S ENGLISH NAME"
+          component={this.renderHead}
+          label="SCHOOL'S NAME"
         />
         <Field
           name="q1"

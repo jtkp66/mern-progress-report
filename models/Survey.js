@@ -4,87 +4,87 @@ const Schema = mongoose.Schema;
 const SurveySchema = new mongoose.Schema({
   date: {
     type: String,
-    required: true
+    required: false
   },
   coordinator: {
     type: String,
-    required: true
+    required: false
   },
   student: {
     type: String,
-    required: true
+    required: false
   },
   host: {
     type: String,
-    required: true
+    required: false
   },
   engname: {
     type: String,
-    required: true
+    required: false
   },
   q1: {
     type: String,
-    required: true
+    required: false
   },
   q1a: {
     type: String,
-    required: true
+    required: false
   },
   q2: {
     type: String,
-    required: true
+    required: false
   },
   q3: {
     type: String,
-    required: true
+    required: false
   },
   q4: {
     type: String,
-    required: true
+    required: false
   },
   q4a: {
     type: String,
-    required: true
+    required: false
   },
   q4b: {
     type: String,
-    required: true
+    required: false
   },
   q5: {
     type: String,
-    required: true
+    required: false
   },
   q5a: {
     type: String,
-    required: true
+    required: false
   },
   q6: {
     type: String,
-    required: true
+    required: false
   },
   q6a: {
     type: String,
-    required: true
+    required: false
   },
   q6b: {
     type: String,
-    required: true
+    required: false
   },
   q7: {
     type: String,
-    required: true
+    required: false
   },
   q7a: {
     type: String,
-    required: true
+    required: false
   },
   q7b: {
     type: String,
-    required: true
+    required: false
   },
   q8: {
     type: String,
-    required: true
+    required: false
   }
 });
 

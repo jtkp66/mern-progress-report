@@ -56,7 +56,7 @@ class SurveyCreate extends Component {
         <div className="text-primary">
           <Pagination aria-label="Page navigation example">
             <PaginationItem>
-              <PaginationLink className="text-info" href="/surveys/new">
+              <PaginationLink className="text-info" href="/">
                 Student MPR
               </PaginationLink>
             </PaginationItem>
@@ -70,12 +70,12 @@ class SurveyCreate extends Component {
                 className="text-info"
                 href="/surveys/coordinatormpr"
               >
-                Coordinator MPR
+                School MPR
               </PaginationLink>
             </PaginationItem>
           </Pagination>
         </div>
-        <h3 className="text-danger">MONTHLY PROGRESS REPORT</h3>
+        <h3 className="text-info">MONTHLY PROGRESS REPORT</h3>
         <SurveyForm onSubmit={this.onSubmit} />
       </div>
     );
