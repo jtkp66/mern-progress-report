@@ -132,7 +132,7 @@ class SurveyForm extends Component {
           2) Please tell me about one experience you had this month{" "}
           <u>at school</u> that differs from last month (REQUIRED).
         </label>
-        <textarea rows="2" />
+        <textarea rows="2" {...input} />
       </div>
     );
   };
@@ -145,7 +145,7 @@ class SurveyForm extends Component {
           3) Please tell me about one experience you had this month with your{" "}
           <u>host family</u> that differs from last month (REQUIRED).
         </label>
-        <textarea rows="2" />
+        <textarea rows="2" {...input} />
       </div>
     );
   };
@@ -237,8 +237,8 @@ class SurveyForm extends Component {
           component={this.renderRadio}
         />
         <Field name="q1a" label="Comments:" component={this.renderTextarea} />
-        <Field name="q2" component={this.renderQ2} />
-        <Field name="q3" component={this.renderQ3} />
+        <Field name="q2" label="" component={this.renderQ2} />
+        <Field name="q3" label="" component={this.renderQ3} />
         <Field
           name="q4"
           label="4) Do you feel you are improving your conversational English?"
