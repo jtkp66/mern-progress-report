@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const SurveySchema = new mongoose.Schema({
   date: {
-    type: String,
-    required: false
+    type: Date,
+    default: Date.now
   },
   coordinator: {
     type: String,

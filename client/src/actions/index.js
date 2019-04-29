@@ -13,7 +13,7 @@ export const createSurvey = formValues => async (dispatch, getState) => {
   const response = await axios.post("/api/surveys", { ...formValues, user });
 
   dispatch({ type: CREATE_SURVEY, payload: response.data });
-  history.push("/");
+  history.push("/surveys");
 };
 
 export const fetchSurveys = () => async dispatch => {

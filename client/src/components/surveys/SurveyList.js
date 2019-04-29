@@ -9,12 +9,14 @@ class SurveyList extends Component {
   }
 
   renderSurveys() {
-    return this.props.surveys.reverse().map(survey => {
+    return this.props.surveys.map(survey => {
       return (
         <div className="card blue-grey darken-1" key={survey._id}>
-          <div className="card-content white-text">
-            <span className="card-title">{survey.coordinator}</span>
-            <p>{survey.host}</p>
+          <div className="card-content white-text ml-2 mt-2">
+            <span className="card-title text-danger">
+              Coordinator: {survey.coordinator}
+            </span>
+            <p className="text-primary mt-2">Sudent: {survey.host}</p>
             <p className="right">
               Sent On: {new Date(survey.date).toLocaleDateString()}
             </p>
@@ -25,7 +27,7 @@ class SurveyList extends Component {
   }
 
   renderList() {
-    return this.props.surveys.map(survey => {
+    return this.props.surveys.reverse().map(survey => {
       return (
         <div className="item" key={survey._id}>
           <i className="large middle aligned icon file" />
@@ -44,10 +46,13 @@ class SurveyList extends Component {
   }
 
   render() {
+    const { name } = this.props;
     return (
       <div>
         <h2>Surveys</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div key={name} className="ui celled list">
+          {this.renderList()}
+        </div>
       </div>
     );
   }

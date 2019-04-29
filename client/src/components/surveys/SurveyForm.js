@@ -12,46 +12,6 @@ class SurveyForm extends Component {
     }
   }
 
-  renderSplit = ({ input, label, meta, placeholder }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div className={className}>
-        <div className="field">
-          <label>{label}</label>
-          <input type="text" placeholder={placeholder} />
-        </div>
-      </div>
-    );
-  };
-
-  renderHead = ({ input, label, meta, placeholder }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    console.log(meta);
-    return (
-      <div className={className}>
-        <div className="two fields">
-          <div className="field">
-            <label>{label}</label>
-            <input
-              type="text"
-              name="shipping[first-name]"
-              placeholder={placeholder}
-            />
-          </div>
-
-          <div className="field">
-            <label>{label}</label>
-            <input
-              type="text"
-              name="shipping[last-name]"
-              placeholder={placeholder}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   renderTextarea = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
@@ -171,16 +131,6 @@ class SurveyForm extends Component {
             </div>
           </div>
         </div>
-      </div>
-    );
-  };
-
-  renderCoordinatorComments = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div className={className}>
-        <label className="text-danger" />
-        <textarea rows="2" />
       </div>
     );
   };
