@@ -3,6 +3,7 @@ const router = express.Router();
 
 //Survey model
 const Survey = require("../../models/Survey");
+const User = require("../../models/User");
 
 // @route GET api/surveys
 // @desc Get ALL surveys
@@ -42,6 +43,17 @@ router.post("/", (req, res) => {
   });
 
   newSurvey.save().then(survey => res.json(survey));
+});
+
+// @route GET api/posts/:id
+// @descr Get Post by id
+// @access Public
+router.get("/:id", (req, res) => {
+  Survey.findById(req.params.id)
+    .then(survey => res.json(survey))
+    .catch(err =>
+      res.status(404).json({ nopostfound: "No post found with that ID" })
+    );
 });
 
 // @route DELETE api/surveys

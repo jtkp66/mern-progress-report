@@ -4,7 +4,7 @@ import logo from "../img/logo.png";
 
 const Header = () => {
   return (
-    <div className="ui  menu">
+    <div className="ui secondary menu">
       <Link to="/" className="item ui header">
         <img src={logo} alt="MAH Logo" />
       </Link>
