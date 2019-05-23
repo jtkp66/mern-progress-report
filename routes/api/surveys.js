@@ -9,8 +9,8 @@ const User = require("../../models/User");
 // @route GET api/surveys
 // @desc Get ALL surveys
 // @access Public
-router.get("/", (req, res) => {
-  Survey.find()
+router.get("/", auth, (req, res) => {
+  Survey.find({ user: req.user.id })
     .sort({ date: -1 })
     .then(surveys => res.json(surveys));
 });
@@ -33,6 +33,32 @@ router.post("/", auth, (req, res) => {
 
   newSurvey.save().then(survey => res.json(survey));
 });
+
+// app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
+//   const { title, subject, body, recipients } = req.body;
+
+//   const survey = new Survey({
+//     title: title,
+//     subject: subject,
+//     body: body,
+
+//     user: req.user.id,
+//     dateSent: Date.now()
+//   });
+
+//   const mailer = new Mailer(survey, surveyTemplate(survey));
+
+//   try {
+//     await mailer.send();
+//     await survey.save();
+//     req.user.credits -= 1;
+//     const user = await req.user.save();
+
+//     res.send(user);
+//   } catch (err) {
+//     res.status(422).send(err);
+//   }
+// });
 
 router.get("/me", auth, async (req, res) => {
   const surveys = await Survey.find({ user: req.user.id });

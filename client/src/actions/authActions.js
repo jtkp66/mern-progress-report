@@ -11,6 +11,7 @@ import {
   CLEAR_PROFILE
 } from "../actions/types";
 import setAuthToken from "../utils/setAuthToken";
+import history from "../history";
 
 // Load User
 export const loadUser = () => async dispatch => {
@@ -100,4 +101,5 @@ export const login = (email, password) => async dispatch => {
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
+  history.push("/");
 };

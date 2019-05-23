@@ -1,25 +1,39 @@
 import React from "react";
-// import logo from "../img/logo.png";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Landing = () => {
+const Landing = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
-    <div>
-      <div className="row mt-5">
-        <div className="col-md-6 m-auto">
-          <div className="card card-body text-danger text-center">
-            {/* <img className="mt-4" src={logo} alt="Logo" /> */}
-            <p className="text-dark">Please Select A Role</p>
-            <a href="/admin/validate" className="btn btn-info btn-block mb-2">
-              Admin
-            </a>
-            <a href="/coordinators/login" className="btn btn-danger btn-block">
-              Coordinator
-            </a>
+    <section className="landing">
+      <div className="dark-overlay">
+        <div className="landing-inner">
+          <h1 className="x-large">MPR</h1>
+          <p className="lead">Create a survey.</p>
+          <div className="buttons">
+            <Link to="/register" className="btn btn-primary">
+              Sign Up
+            </Link>
+            <Link to="/login" className="btn btn-light">
+              Login
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);
