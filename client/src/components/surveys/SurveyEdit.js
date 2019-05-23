@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import SurveyForm from "./SurveyForm";
@@ -8,6 +9,10 @@ class SurveyEdit extends Component {
     this.props.fetchSurvey(this.props.match.params.id);
   }
 
+  onSubmit = formValues => {
+    this.props.editSurvey(this.props.match.params.id, formValues);
+  };
+
   render() {
     console.log(this.props);
     if (!this.props.survey) {
@@ -16,9 +21,18 @@ class SurveyEdit extends Component {
 
     return (
       <div>
-        <h3>Edit A Survey</h3>
+        <h3>Edit a Survey</h3>
         <SurveyForm
-          initialValues={this.props.survey}
+          initialValues={_.pick(
+            this.props.survey,
+            "coordinator",
+            "student",
+            "hostfamily",
+            "englishname",
+            "question1",
+            "question2",
+            "question3"
+          )}
           onSubmit={this.onSubmit}
         />
       </div>

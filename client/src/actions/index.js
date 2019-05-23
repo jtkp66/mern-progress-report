@@ -13,7 +13,7 @@ export const createSurvey = formValues => async (dispatch, getState) => {
   const response = await axios.post("/api/surveys", { ...formValues, user });
 
   dispatch({ type: CREATE_SURVEY, payload: response.data });
-  history.push("/surveys");
+  history.push("/dashboard");
 };
 
 export const fetchSurveys = () => async dispatch => {
@@ -40,4 +40,11 @@ export const deleteSurvey = id => async dispatch => {
 
   dispatch({ type: DELETE_SURVEY, payload: id });
   history.push("/");
+};
+
+export const fetchUsersSurveys = user => async (dispatch, getState) => {
+  const { user } = getState().auth;
+  const response = await axios.get(`/api/surveys/${user}`);
+
+  dispatch({ type: FETCH_SURVEY, payload: response.data });
 };

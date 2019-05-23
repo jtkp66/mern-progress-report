@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../img/logo.png";
+// import logo from "../img/logo.png";
 
 const Landing = () => {
   return (
@@ -7,7 +7,7 @@ const Landing = () => {
       <div className="row mt-5">
         <div className="col-md-6 m-auto">
           <div className="card card-body text-danger text-center">
-            <img className="mt-4" src={logo} alt="Logo" />
+            {/* <img className="mt-4" src={logo} alt="Logo" /> */}
             <p className="text-dark">Please Select A Role</p>
             <a href="/admin/validate" className="btn btn-info btn-block mb-2">
               Admin

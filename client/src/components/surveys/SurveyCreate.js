@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createSurvey } from "../../actions";
 import SurveyForm from "./SurveyForm";
+import history from "../../history";
 
 import {
   Pagination,
@@ -47,6 +48,7 @@ class SurveyCreate extends Component {
   onSubmit = formValues => {
     console.log(formValues);
     this.props.createSurvey(formValues);
+    history.push("/dashboard");
   };
 
   render() {

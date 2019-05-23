@@ -12,38 +12,21 @@ class SurveyShow extends React.Component {
     this.props.fetchSurvey(id);
   }
 
-  componentWillUnmount() {
-    this.player.destroy();
-  }
-
   render() {
     if (!this.props.survey) {
       return <div>Loading...</div>;
     }
 
-    const {
-      date,
-      coordinator,
-      student,
-      host,
-      engname,
-      q1,
-      q1a,
-      q2,
-      q3,
-      q4,
-      q4a,
-      q4b,
-      q5,
-      q5a,
-      q6,
-      q6a,
-      q6b,
-      q7,
-      q7a,
-      q7b,
-      q8
-    } = this.props.survey;
+    // const {
+    //   date,
+    //   coordinator,
+    //   student,
+    //   hostfamily,
+    //   englishname,
+    //   question1,
+    //   question2,
+    //   question3
+    // } = this.props.survey;
 
     return (
       <div>
@@ -54,24 +37,11 @@ class SurveyShow extends React.Component {
             "date",
             "coordinator",
             "student",
-            "host",
-            "engname",
-            "q1",
-            "q1a",
-            "q2",
-            "q3",
-            "q4",
-            "q4a",
-            "q4b",
-            "q5",
-            "q5a",
-            "q6",
-            "q6a",
-            "q6b",
-            "q7",
-            "q7a",
-            "q7b",
-            "q8"
+            "hostfamily",
+            "englishname",
+            "question1",
+            "question2",
+            "question3"
           )}
           onSubmit={this.onSubmit}
         />

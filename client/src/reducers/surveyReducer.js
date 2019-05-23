@@ -4,13 +4,16 @@ import {
   FETCH_SURVEYS,
   FETCH_SURVEY,
   DELETE_SURVEY,
-  EDIT_SURVEY
+  EDIT_SURVEY,
+  FETCH_USERS_SURVEYS
 } from "../actions/types";
 
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_SURVEYS:
       return { ...state, ..._.mapKeys(action.payload, "_id") };
+    case FETCH_USERS_SURVEYS:
+      return { ...state, ..._.mapKeys(action.payload, "user") };
     case FETCH_SURVEY:
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_SURVEY:

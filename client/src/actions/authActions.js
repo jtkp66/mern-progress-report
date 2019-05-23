@@ -1,126 +1,103 @@
 import axios from "axios";
-import { returnErrors } from "./errorActions";
-
+import { setAlert } from "./alert";
 import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   USER_LOADED,
-  USER_LOADING,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT_SUCCESS,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL
-} from "./types";
+  LOGOUT,
+  CLEAR_PROFILE
+} from "../actions/types";
+import setAuthToken from "../utils/setAuthToken";
 
-// Check token & load user
-export const loadUser = () => (dispatch, getState) => {
-  // User loading
-  dispatch({ type: USER_LOADING });
+// Load User
+export const loadUser = () => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
 
-  axios
-    .get("/api/auth/user", tokenConfig(getState))
-    .then(res =>
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR
-      });
+  try {
+    const res = await axios.get("/api/auth");
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
     });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR
+    });
+  }
 };
 
 // Register User
-export const register = ({
-  firstName,
-  lastName,
-  email,
-  password
-}) => dispatch => {
-  // Headers
+export const register = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
 
-  // Request body
-  const body = JSON.stringify({ firstName, lastName, email, password });
+  const body = JSON.stringify({ name, email, password });
 
-  axios
-    .post("/api/users", body, config)
-    .then(res =>
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
-      );
-      dispatch({
-        type: REGISTER_FAIL
-      });
+  try {
+    const res = await axios.post("/api/users", body, config);
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
     });
+
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
 };
 
 // Login User
-export const login = ({ email, password }) => dispatch => {
-  // Headers
+export const login = (email, password) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
 
-  // Request body
   const body = JSON.stringify({ email, password });
 
-  axios
-    .post("/api/auth", body, config)
-    .then(res =>
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
-      );
-      dispatch({
-        type: LOGIN_FAIL
-      });
+  try {
+    const res = await axios.post("/api/auth", body, config);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
     });
-};
 
-// Logout User
-export const logout = () => {
-  return {
-    type: LOGOUT_SUCCESS
-  };
-};
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
 
-// Setup config/headers and token
-export const tokenConfig = getState => {
-  // Get token from localstorage
-  const token = getState().auth.token;
-
-  // Headers
-  const config = {
-    headers: {
-      "Content-type": "application/json"
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
-  };
 
-  // If token, add to headers
-  if (token) {
-    config.headers["x-auth-token"] = token;
+    dispatch({
+      type: LOGIN_FAIL
+    });
   }
+};
 
-  return config;
+// Logout / Clear Profile
+export const logout = () => dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOGOUT });
 };

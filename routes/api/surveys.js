@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 
 //Survey model
 const Survey = require("../../models/Survey");
@@ -17,32 +18,26 @@ router.get("/", (req, res) => {
 // @route POST api/surveys
 // @desc create a Survey
 // @access Public
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   const newSurvey = new Survey({
     date: req.body.date,
     coordinator: req.body.coordinator,
     student: req.body.student,
-    host: req.body.host,
-    engname: req.body.engname,
-    q1: req.body.q1,
-    q1a: req.body.q1a,
-    q2: req.body.q2,
-    q3: req.body.q3,
-    q4: req.body.q4,
-    q4a: req.body.q4a,
-    q4b: req.body.q4b,
-    q5: req.body.q5,
-    q5a: req.body.q5a,
-    q6: req.body.q6,
-    q6a: req.body.q6a,
-    q6b: req.body.q6b,
-    q7: req.body.q7,
-    q7a: req.body.q7a,
-    q7b: req.body.q7b,
-    q8: req.body.q8
+    hostfamily: req.body.host,
+    englishname: req.body.engname,
+    question1: req.body.question1,
+    question2: req.body.question2,
+    question3: req.body.question3,
+    user: req.user.id
   });
 
   newSurvey.save().then(survey => res.json(survey));
+});
+
+router.get("/me", auth, async (req, res) => {
+  const surveys = await Survey.find({ user: req.user.id });
+
+  res.json(surveys);
 });
 
 // @route GET api/posts/:id

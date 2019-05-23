@@ -169,7 +169,7 @@ class SurveyForm extends Component {
             component={this.renderInput}
           />
           <Field
-            name="host"
+            name="hostfamily"
             label="Host Family Name:"
             placeholder="Host Family Name:"
             component={this.renderInput}
@@ -177,18 +177,18 @@ class SurveyForm extends Component {
         </div>
         <h3 className="text-danger">STUDENT PROGRESS</h3>
         <Field
-          name="engname"
+          name="englishname"
           component={this.renderInput}
           label="STUDENT'S ENGLISH NAME"
         />
         <Field
-          name="q1"
+          name="question1"
           label="1) How are you getting along with your host family?"
           component={this.renderRadio}
         />
         <Field name="q1a" label="Comments:" component={this.renderTextarea} />
-        <Field name="q2" label="" component={this.renderQ2} />
-        <Field name="q3" label="" component={this.renderQ3} />
+        <Field name="question2" label="" component={this.renderQ2} />
+        <Field name="question3" label="" component={this.renderQ3} />
         <Field
           name="q4"
           label="4) Do you feel you are improving your conversational English?"
