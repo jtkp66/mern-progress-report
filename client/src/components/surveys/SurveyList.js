@@ -32,7 +32,7 @@ class SurveyList extends Component {
         <div className="item" key={survey._id}>
           <i className="large middle aligned icon file" />
           <div className="content">
-            <Link to={`/surveys/${survey._id}`} className="header">
+            <Link to={`/surveys/edit/${survey._id}`} className="header">
               Coordinator - {survey.coordinator}
             </Link>
             <div className="description">Student - {survey.host}</div>

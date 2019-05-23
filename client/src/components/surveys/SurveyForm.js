@@ -252,7 +252,9 @@ class SurveyForm extends Component {
             <Field name="q8" component={this.renderTextarea} />
           </div>
         </div>
-        <button className="ui inverted primary button mt-2 mb-4">Submit</button>
+        <button className="ui inverted primary button mt-2 mb-4">
+          Save Survey
+        </button>
       </form>
     );
   }

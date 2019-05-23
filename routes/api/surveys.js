@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
+const { check, validationResult } = require("express-validator/check");
 
 //Survey model
 const Survey = require("../../models/Survey");
@@ -34,32 +35,6 @@ router.post("/", auth, (req, res) => {
   newSurvey.save().then(survey => res.json(survey));
 });
 
-// app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
-//   const { title, subject, body, recipients } = req.body;
-
-//   const survey = new Survey({
-//     title: title,
-//     subject: subject,
-//     body: body,
-
-//     user: req.user.id,
-//     dateSent: Date.now()
-//   });
-
-//   const mailer = new Mailer(survey, surveyTemplate(survey));
-
-//   try {
-//     await mailer.send();
-//     await survey.save();
-//     req.user.credits -= 1;
-//     const user = await req.user.save();
-
-//     res.send(user);
-//   } catch (err) {
-//     res.status(422).send(err);
-//   }
-// });
-
 router.get("/me", auth, async (req, res) => {
   const surveys = await Survey.find({ user: req.user.id });
 
@@ -84,6 +59,17 @@ router.delete("/:id", (req, res) => {
   Survey.findById(req.params.id)
     .then(survey => survey.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ sucess: false }));
+});
+
+// @route PUT api/surveys/:id
+// @desc Update a Survey
+// @access Private
+router.patch("/:id", auth, function(req, res, next) {
+  Survey.findOneAndUpdate({ _id: req.params.id }, req.body).then(function() {
+    Survey.findById({ _id: req.params.id }).then(function(survey) {
+      res.send(survey);
+    });
+  });
 });
 
 module.exports = router;

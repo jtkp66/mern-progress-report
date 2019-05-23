@@ -32,7 +32,7 @@ export const editSurvey = (id, formValues) => async dispatch => {
   const response = await axios.patch(`/api/surveys/${id}`, formValues);
 
   dispatch({ type: EDIT_SURVEY, payload: response.data });
-  history.push("/");
+  history.push("/dashboard");
 };
 
 export const deleteSurvey = id => async dispatch => {
