@@ -21,6 +21,9 @@ const Landing = ({ isAuthenticated }) => {
             <Link to="/login" className="btn btn-danger">
               Login
             </Link>
+            <Link to="/admin/Landing" className="btn btn-secondary">
+              Admin
+            </Link>
           </div>
         </div>
       </div>

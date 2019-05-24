@@ -5,7 +5,8 @@ import {
   FETCH_SURVEY,
   DELETE_SURVEY,
   EDIT_SURVEY,
-  FETCH_USERS_SURVEYS
+  FETCH_USERS_SURVEYS,
+  SURVEY_ERROR
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +29,12 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_SURVEY:
       return _.omit(state, action.payload);
+    case SURVEY_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
     default:
       return state;
   }

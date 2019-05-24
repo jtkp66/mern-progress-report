@@ -8,35 +8,39 @@ class SurveyList extends Component {
     this.props.fetchSurveys();
   }
 
-  // renderSurveys() {
-  //   return this.props.surveys.map(survey => {
-  //     return (
-  //       <div className="card blue-grey darken-1" key={survey._id}>
-  //         <div className="card-content white-text ml-2 mt-2">
-  //           <span className="card-title text-danger">
-  //             Coordinator: {survey.coordinator}
-  //           </span>
-  //           <p className="text-primary mt-2">Sudent: {survey.host}</p>
-  //           <p className="right">
-  //             Sent On: {new Date(survey.date).toLocaleDateString()}
-  //           </p>
-  //         </div>
-  //       </div>
-  //     );
-  //   });
-  // }
+  renderSurveys() {
+    return this.props.surveys.map(survey => {
+      return (
+        <div className="card blue-grey darken-1" key={survey._id}>
+          {this.renderAdminButtons(survey)}
+          <div className="card-content white-text ml-2 mt-2">
+            <span className="card-title text-danger">
+              Coordinator: {survey.coordinator}
+            </span>
+            <p className="text-primary mt-2">Sudent: {survey.host}</p>
+            <p className="right">
+              Sent On: {new Date(survey.date).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+      );
+    });
+  }
 
   renderAdminButtons(survey) {
     if (survey.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
           <Link
-            to={`/surveys/edit/${survey.id}`}
+            to={`/surveys/edit/${survey._id}`}
             className="ui inverted secondary button"
           >
             Edit
           </Link>
-          <Link to={`/surveys/delete/${survey.id}`} className="small ui button">
+          <Link
+            to={`/surveys/delete/${survey._id}`}
+            className="small ui button"
+          >
             Delete
           </Link>
         </div>
@@ -68,7 +72,7 @@ class SurveyList extends Component {
     return (
       <div>
         <h2>Surveys</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div className="ui celled list">{this.renderSurveys()}</div>
       </div>
     );
   }

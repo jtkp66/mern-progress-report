@@ -1,12 +1,14 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import history from "../history";
+import { tokenConfig } from "./authActions";
 import {
   CREATE_SURVEY,
   FETCH_SURVEYS,
   FETCH_SURVEY,
   DELETE_SURVEY,
-  EDIT_SURVEY
+  EDIT_SURVEY,
+  SURVEY_ERROR
 } from "./types";
 
 export const createSurvey = formValues => async (dispatch, getState) => {
@@ -37,15 +39,8 @@ export const editSurvey = (id, formValues) => async dispatch => {
 };
 
 export const deleteSurvey = id => async dispatch => {
-  await axios.delete(`/api/surveys/${id}`);
+  await axios.delete(`/api/surveys/delete/${id}`);
 
   dispatch({ type: DELETE_SURVEY, payload: id });
-  history.push("/");
-};
-
-export const fetchUsersSurveys = user => async (dispatch, getState) => {
-  const { user } = getState().auth;
-  const response = await axios.get(`/api/surveys/${user}`);
-
-  dispatch({ type: FETCH_SURVEY, payload: response.data });
+  history.push("/dashboard");
 };

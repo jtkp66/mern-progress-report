@@ -20,7 +20,7 @@ const Dashboard = ({ fetchSurveys, surveys: { surveys, loading } }) => {
           <Link to="/surveys/new" className="btn btn-lg btn-danger slign-right">
             Create Survey
           </Link>
-          <SurveyList />
+          <SurveyList key={surveys._id} />
         </div>
       </div>
     </Fragment>

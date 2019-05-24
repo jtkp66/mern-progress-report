@@ -55,10 +55,20 @@ router.get("/:id", (req, res) => {
 // @route DELETE api/surveys
 // @desc Delete an survey
 // @access Public
-router.delete("/:id", (req, res) => {
-  Survey.findById(req.params.id)
-    .then(survey => survey.remove().then(() => res.json({ success: true })))
-    .catch(err => res.status(404).json({ sucess: false }));
+router.delete("/delete/:id", auth, async (req, res) => {
+  try {
+    const survey = await Survey.findById({ _id: req.params.id });
+
+    await survey.remove();
+
+    res.json({ msg: "survey removed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "survey not found" });
+    }
+    res.status(500).send("Server Error");
+  }
 });
 
 // @route PUT api/surveys/:id

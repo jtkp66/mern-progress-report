@@ -4,6 +4,7 @@ export const FETCH_SURVEY = "FETCH_SURVEY";
 export const FETCH_USERS_SURVEYS = "FETCH_USERS_SURVEYS";
 export const DELETE_SURVEY = "DELETE_SURVEY";
 export const EDIT_SURVEY = "EDIT_SURVEY";
+export const SURVEY_ERROR = "SURVEY_ERROR";
 
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
