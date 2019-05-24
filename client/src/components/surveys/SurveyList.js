@@ -26,10 +26,29 @@ class SurveyList extends Component {
   //   });
   // }
 
+  renderAdminButtons(survey) {
+    if (survey.userId === this.props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <Link
+            to={`/surveys/edit/${survey.id}`}
+            className="ui inverted secondary button"
+          >
+            Edit
+          </Link>
+          <Link to={`/surveys/delete/${survey.id}`} className="small ui button">
+            Delete
+          </Link>
+        </div>
+      );
+    }
+  }
+
   renderList() {
     return this.props.surveys.reverse().map(survey => {
       return (
         <div className="item" key={survey._id}>
+          {this.renderAdminButtons(survey)}
           <i className="large middle aligned icon file" />
           <div className="content">
             <Link to={`/surveys/edit/${survey._id}`} className="header">
@@ -46,14 +65,10 @@ class SurveyList extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const { _id } = this.props;
     return (
       <div>
         <h2>Surveys</h2>
-        <div key={_id} className="ui celled list">
-          {this.renderList()}
-        </div>
+        <div className="ui celled list">{this.renderList()}</div>
       </div>
     );
   }

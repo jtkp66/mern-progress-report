@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import SurveyForm from "./SurveyForm";
 
 import { fetchSurvey } from "../../actions";
+import Spinner from "../layout/Spinner";
 
 class SurveyShow extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class SurveyShow extends React.Component {
 
   render() {
     if (!this.props.survey) {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
 
     // const {

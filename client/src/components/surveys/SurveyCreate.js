@@ -48,14 +48,13 @@ class SurveyCreate extends Component {
   onSubmit = formValues => {
     console.log(formValues);
     this.props.createSurvey(formValues);
-    history.push("/dashboard");
   };
 
   render() {
     // console.log(this.props);
     return (
       <div>
-        <div className="text-primary">
+        <div className="text-info">
           <Pagination aria-label="Page navigation example">
             <PaginationItem>
               <PaginationLink className="text-info" href="/">
@@ -77,7 +76,7 @@ class SurveyCreate extends Component {
             </PaginationItem>
           </Pagination>
         </div>
-        <h3 className="text-info">MONTHLY PROGRESS REPORT</h3>
+        <h3 className="text-secondary">MONTHLY PROGRESS REPORT</h3>
         <SurveyForm onSubmit={this.onSubmit} />
       </div>
     );

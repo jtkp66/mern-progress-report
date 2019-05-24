@@ -271,10 +271,10 @@ img {
   border: 1px solid #ccc;
 }
 
-.form input[type="submit"],
+/* .form input[type="submit"],
 button {
   font: inherit;
-}
+} */
 
 .form .social-input {
   display: flex;
@@ -321,7 +321,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--danger-color);
+  border-bottom: solid 2px var(--danger-color);
   opacity: 0.9;
 }
 

@@ -60,7 +60,7 @@ router.post(
 
       const payload = {
         user: {
-          id: user.id // mongoose abstraction from mongo's _id.
+          id: user.id
         }
       };
 
@@ -75,7 +75,7 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).sed("Server Error");
+      res.status(500).send("Server Error");
     }
   }
 );

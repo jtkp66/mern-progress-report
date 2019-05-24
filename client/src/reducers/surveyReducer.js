@@ -8,10 +8,16 @@ import {
   FETCH_USERS_SURVEYS
 } from "../actions/types";
 
-export default (state = {}, action) => {
+const initialState = {
+  surveys: [],
+  loading: true,
+  error: {}
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SURVEYS:
-      return { ...state, ..._.mapKeys(action.payload, "_id") };
+      return { ...state, ..._.mapKeys(action.payload, "_id"), loading: false };
     case FETCH_USERS_SURVEYS:
       return { ...state, ..._.mapKeys(action.payload, "user") };
     case FETCH_SURVEY:

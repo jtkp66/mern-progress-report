@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 
 class SurveyForm extends Component {
   renderError({ error, touched }) {
@@ -147,6 +148,10 @@ class SurveyForm extends Component {
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
       >
+        <Link to="/" className="btn btn-danger mb-2">
+          Back
+        </Link>
+
         <div className="two fields">
           <Field
             name="date"

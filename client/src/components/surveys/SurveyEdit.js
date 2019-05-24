@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SurveyForm from "./SurveyForm";
 import { fetchSurvey, editSurvey } from "../../actions";
+import Spinner from "../layout/Spinner";
 
 class SurveyEdit extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class SurveyEdit extends Component {
   render() {
     console.log(this.props);
     if (!this.props.survey) {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
 
     return (

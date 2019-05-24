@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setAlert } from "./alert";
 import history from "../history";
 import {
   CREATE_SURVEY,
@@ -13,7 +14,7 @@ export const createSurvey = formValues => async (dispatch, getState) => {
   const response = await axios.post("/api/surveys", { ...formValues, user });
 
   dispatch({ type: CREATE_SURVEY, payload: response.data });
-  history.push("/dashboard");
+  dispatch(setAlert("Survey Created", "success"));
 };
 
 export const fetchSurveys = () => async dispatch => {
@@ -32,7 +33,7 @@ export const editSurvey = (id, formValues) => async dispatch => {
   const response = await axios.patch(`/api/surveys/${id}`, formValues);
 
   dispatch({ type: EDIT_SURVEY, payload: response.data });
-  history.push("/dashboard");
+  history.push("/");
 };
 
 export const deleteSurvey = id => async dispatch => {
