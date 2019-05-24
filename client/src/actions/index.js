@@ -1,14 +1,13 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import history from "../history";
-import { tokenConfig } from "./authActions";
 import {
   CREATE_SURVEY,
   FETCH_SURVEYS,
+  FETCH_ALL_SURVEYS,
   FETCH_SURVEY,
   DELETE_SURVEY,
-  EDIT_SURVEY,
-  SURVEY_ERROR
+  EDIT_SURVEY
 } from "./types";
 
 export const createSurvey = formValues => async (dispatch, getState) => {
@@ -23,6 +22,12 @@ export const fetchSurveys = () => async dispatch => {
   const response = await axios.get("/api/surveys");
 
   dispatch({ type: FETCH_SURVEYS, payload: response.data });
+};
+
+export const fetchAllSurveys = () => async dispatch => {
+  const response = await axios.get("/api/surveys/all");
+
+  dispatch({ type: FETCH_ALL_SURVEYS, payload: response.data });
 };
 
 export const fetchSurvey = id => async dispatch => {

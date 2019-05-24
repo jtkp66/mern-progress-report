@@ -14,13 +14,14 @@ import Dashboard from "./components/layout/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 import SurveyCreate from "./components/surveys/SurveyCreate";
+import SurveyAdmin from "./components/surveys/SurveyAdmin";
 import SurveyEdit from "./components/surveys/SurveyEdit";
 import SurveyList from "./components/surveys/SurveyList";
 import SurveyShow from "./components/surveys/SurveyShow";
 import SurveyDelete from "./components/surveys/SurveyDelete";
 import history from "./history";
 
-// import "./App.css";
+import "./App.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -52,6 +53,7 @@ const App = () => {
                 component={SurveyDelete}
               />
               <Route path="/surveys/:id" exact component={SurveyShow} />
+              <Route path="/surveys/admin" exact component={SurveyAdmin} />
             </Switch>
           </section>
         </Fragment>

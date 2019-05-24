@@ -148,7 +148,7 @@ class SurveyForm extends Component {
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
       >
-        <Link to="/" className="btn btn-danger mb-2">
+        <Link to="/dashboard" className="btn btn-danger mb-2">
           Back
         </Link>
 

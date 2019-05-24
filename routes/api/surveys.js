@@ -16,6 +16,16 @@ router.get("/", auth, (req, res) => {
     .then(surveys => res.json(surveys));
 });
 
+router.get("/all", auth, async (req, res) => {
+  try {
+    const surveys = await Survey.find().sort({ date: -1 });
+    res.json(surveys);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route POST api/surveys
 // @desc create a Survey
 // @access Public

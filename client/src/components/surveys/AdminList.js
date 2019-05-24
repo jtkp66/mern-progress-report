@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../../actions";
+import { fetchAllSurveys } from "../../actions";
 
 class SurveyList extends Component {
   componentDidMount() {
-    this.props.fetchSurveys();
+    this.props.fetchAllSurveys();
   }
 
   renderSurveys() {
@@ -36,12 +36,6 @@ class SurveyList extends Component {
             className="ui inverted secondary button"
           >
             Edit
-          </Link>
-          <Link
-            to={`/surveys/edit/${survey._id}`}
-            className="ui inverted secondary button"
-          >
-            Submit
           </Link>
           <Link
             to={`/surveys/delete/${survey._id}`}
@@ -92,5 +86,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchSurveys }
+  { fetchAllSurveys }
 )(SurveyList);
