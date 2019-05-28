@@ -45,7 +45,7 @@ class AdminSurveyDelete extends React.Component {
         title="Delete Survey"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push("/adminDashboard")}
+        onDismiss={() => history.push("/admin/dashboard")}
       />
     );
   }

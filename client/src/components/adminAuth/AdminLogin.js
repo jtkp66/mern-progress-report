@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/authActions";
+import { adminLogin } from "../../actions/adminAuthActions";
 
-const AdminLogin = ({ login, isAuthenticated }) => {
+const AdminLogin = ({ adminLogin, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -17,12 +17,12 @@ const AdminLogin = ({ login, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    login(email, password);
+    adminLogin(email, password);
   };
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to="/adminDashboard" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   return (
@@ -62,7 +62,7 @@ const AdminLogin = ({ login, isAuthenticated }) => {
 };
 
 AdminLogin.propTypes = {
-  login: PropTypes.func.isRequired,
+  adminLogin: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -72,5 +72,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
+  { adminLogin }
 )(AdminLogin);

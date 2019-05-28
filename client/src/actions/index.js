@@ -54,5 +54,5 @@ export const adminDeleteSurvey = id => async dispatch => {
   await axios.delete(`/api/surveys/delete/${id}`);
 
   dispatch({ type: DELETE_SURVEY, payload: id });
-  history.push("/adminDashboard");
+  history.push("/admin/dashboard");
 };

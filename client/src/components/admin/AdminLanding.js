@@ -13,16 +13,13 @@ const Landing = ({ isAuthenticated }) => {
       <div className="dark-overlay">
         <div className="landing-inner">
           <h1 className="x-large text-secondary">My American Homestay</h1>
-          <p className="lead text-secondary">Monthly Progress Reports</p>
+          <p className="lead text-secondary">Administration</p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-secondary">
+            <Link to="/admin/register" className="btn btn-secondary">
               Sign Up
             </Link>
-            <Link to="/login" className="btn btn-danger">
+            <Link to="/admin/login" className="btn btn-danger">
               Login
-            </Link>
-            <Link to="/admin/landing" className="btn btn-secondary">
-              Admin
             </Link>
           </div>
         </div>

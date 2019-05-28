@@ -5,7 +5,7 @@ import { setAlert } from "../../actions/alert";
 import { adminRegister } from "../../actions/adminAuthActions";
 import PropTypes from "prop-types";
 
-const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
+const AdminRegister = ({ setAlert, adminRegister, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +28,7 @@ const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to="/AdminDashboard" />;
+    return <Redirect to="/admin/dashboard" />;
   }
 
   return (

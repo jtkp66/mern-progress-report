@@ -18,6 +18,7 @@ import AdminDashboard from "./components/admin/AdminDashboard";
 import AdminRegister from "./components/adminAuth/AdminRegister";
 import AdminLogin from "./components/adminAuth/AdminLogin";
 import AdminSurveyDelete from "./components/admin/AdminSurveyDelete";
+import AdminLanding from "./components/admin/AdminLanding";
 
 import SurveyCreate from "./components/surveys/SurveyCreate";
 import SurveyEdit from "./components/surveys/SurveyEdit";
@@ -59,7 +60,8 @@ const App = () => {
                 component={SurveyDelete}
               />
               <Route path="/surveys/:id" exact component={SurveyShow} />
-              <Route path="/adminDashboard" exact component={AdminDashboard} />
+              <Route path="/admin/landing" exact component={AdminLanding} />
+              <Route path="/admin/dashboard" exact component={AdminDashboard} />
               <Route exact path="/admin/register" component={AdminRegister} />
               <Route exact path="/admin/login" component={AdminLogin} />
               <Route
