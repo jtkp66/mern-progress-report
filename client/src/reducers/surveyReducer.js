@@ -20,11 +20,8 @@ export default (state = initialState, action) => {
     case FETCH_SURVEYS:
       return { ...state, ..._.mapKeys(action.payload, "_id"), loading: false };
     case FETCH_ALL_SURVEYS:
-      return {
-        ...state,
-        surveys: action.payload,
-        loading: false
-      };
+      return { ...state, ..._.mapKeys(action.payload, "_id"), loading: false };
+
     case FETCH_SURVEY:
       return { ...state, [action.payload.id]: action.payload };
     case CREATE_SURVEY:

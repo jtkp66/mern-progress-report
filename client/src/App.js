@@ -53,7 +53,7 @@ const App = () => {
                 component={SurveyDelete}
               />
               <Route path="/surveys/:id" exact component={SurveyShow} />
-              <Route path="/surveys/admin" exact component={SurveyAdmin} />
+              <Route path="/admin" exact component={SurveyAdmin} />
             </Switch>
           </section>
         </Fragment>

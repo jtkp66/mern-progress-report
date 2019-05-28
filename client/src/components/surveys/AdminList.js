@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllSurveys } from "../../actions";
 
-class SurveyList extends Component {
+class AdminList extends Component {
   componentDidMount() {
     this.props.fetchAllSurveys();
   }
@@ -87,4 +87,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchAllSurveys }
-)(SurveyList);
+)(AdminList);
