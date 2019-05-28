@@ -13,8 +13,12 @@ import Alert from "./components/layout/Alert";
 import Dashboard from "./components/layout/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
+import AdminDashboard from "./components/admin/AdminDashboard";
+import AdminRegister from "./components/adminAuth/AdminRegister";
+import AdminLogin from "./components/adminAuth/AdminLogin";
+import AdminSurveyDelete from "./components/admin/AdminSurveyDelete";
+
 import SurveyCreate from "./components/surveys/SurveyCreate";
-import SurveyAdmin from "./components/surveys/SurveyAdmin";
 import SurveyEdit from "./components/surveys/SurveyEdit";
 import SurveyList from "./components/surveys/SurveyList";
 import SurveyShow from "./components/surveys/SurveyShow";
@@ -53,7 +57,14 @@ const App = () => {
                 component={SurveyDelete}
               />
               <Route path="/surveys/:id" exact component={SurveyShow} />
-              <Route path="/admin" exact component={SurveyAdmin} />
+              <Route path="/adminDashboard" exact component={AdminDashboard} />
+              <Route exact path="/admin/register" component={AdminRegister} />
+              <Route exact path="/admin/login" component={AdminLogin} />
+              <Route
+                path="/surveys/delete/:id"
+                exact
+                component={AdminSurveyDelete}
+              />
             </Switch>
           </section>
         </Fragment>

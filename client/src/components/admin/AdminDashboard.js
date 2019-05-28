@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
-import AdminList from "./AdminList";
 import { fetchAllSurveys } from "../../actions/index";
+import AdminList from "../admin/AdminList";
 
-const SurveyAdmin = ({ fetchAllSurveys, survey: { surveys, loading } }) => {
+const AdminDashboard = ({ fetchAllSurveys, surveys: { surveys, loading } }) => {
   useEffect(() => {
     fetchAllSurveys();
   }, [fetchAllSurveys]);
@@ -14,26 +15,27 @@ const SurveyAdmin = ({ fetchAllSurveys, survey: { surveys, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">surveys</h1>
-      <div className="surveys">
-        {surveys.map(survey => (
-          <AdminList key={survey._id} survey={survey} />
-        ))}
+      <div>
+        <div className="fixed-action-btn">
+          <AdminList key={surveys.id} />
+        </div>
       </div>
     </Fragment>
   );
 };
 
-SurveyAdmin.propTypes = {
+AdminDashboard.propTypes = {
   fetchAllSurveys: PropTypes.func.isRequired,
-  survey: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  surveys: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  survey: state.survey
+  auth: state.auth,
+  surveys: state.surveys
 });
 
 export default connect(
   mapStateToProps,
   { fetchAllSurveys }
-)(SurveyAdmin);
+)(AdminDashboard);

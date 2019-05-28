@@ -77,6 +77,7 @@ class SurveyCreate extends Component {
           </Pagination>
         </div>
         <h3 className="text-secondary">MONTHLY PROGRESS REPORT</h3>
+
         <SurveyForm onSubmit={this.onSubmit} />
       </div>
     );

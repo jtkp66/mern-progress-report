@@ -16,7 +16,13 @@ router.get("/", auth, (req, res) => {
     .then(surveys => res.json(surveys));
 });
 
-router.get("/all", auth, async (req, res) => {
+// router.get("/all", (req, res) => {
+//   Survey.find()
+//     .sort({ date: -1 })
+//     .then(surveys => res.json(surveys));
+// });
+
+router.get("/all", async (req, res) => {
   try {
     const surveys = await Survey.find().sort({ date: -1 });
     res.json(surveys);
