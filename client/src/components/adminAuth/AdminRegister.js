@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
-import { register } from "../../actions/authActions";
+import { adminRegister } from "../../actions/adminAuthActions";
 import PropTypes from "prop-types";
 
 const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
@@ -23,7 +23,7 @@ const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
     if (password !== password2) {
       setAlert("Passwords do not match", "danger");
     } else {
-      register({ name, email, password });
+      adminRegister({ name, email, password });
     }
   };
 
@@ -55,10 +55,6 @@ const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
             value={email}
             onChange={e => onChange(e)}
           />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
         </div>
         <div className="form-group">
           <input
@@ -78,7 +74,11 @@ const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-secondary" value="Register" />
+        <input
+          type="submit"
+          className="btn btn-secondary"
+          value="AdminRegister"
+        />
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
@@ -89,7 +89,7 @@ const AdminRegister = ({ setAlert, register, isAuthenticated }) => {
 
 AdminRegister.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
+  adminRegister: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -99,5 +99,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { setAlert, register }
+  { setAlert, adminRegister }
 )(AdminRegister);

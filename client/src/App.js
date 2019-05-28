@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
+import { loadAdminUser } from "./actions/adminAuthActions";
 import setAuthToken from "./utils/setAuthToken";
 
 import Navbar from "./components/layout/Navbar";
@@ -34,6 +35,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadAdminUser());
   }, []);
 
   return (
